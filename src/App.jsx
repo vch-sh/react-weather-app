@@ -9,6 +9,7 @@ function App() {
 
   const [text, setText] = useState('');
 	const [locations, setLocations] = useState([]);
+  const [locationOutputData, setLocationOutputData] = useState({});
 	const [error, setError] = useState('');
   const [coordinates, setCoordinates] = useState({ latitude: '', longitude: '' });
   const [currentWeather, setCurrentWearher] = useState();
@@ -22,7 +23,6 @@ function App() {
     e.preventDefault();
     
     if (text.trim().length) fetchLocation();
-		// setText('');
 	}
 
 	const fetchLocation = async () => {
@@ -48,6 +48,12 @@ function App() {
           longitude: location.longitude
         })
         setText(location.name);
+        setLocationOutputData({
+          name: location.name,
+          region: location.admin1,
+          country: location.country,
+          countryCode: location.country_code
+        });
         setShowSearchOptions(false);
       }
     })
@@ -73,7 +79,7 @@ function App() {
       `)
       const currentWeatherData = await fetchCurrentWeather.json();
       setCurrentWearher(currentWeatherData);
-      // setText('');
+      setText('');
     } catch (error) {
       setError(error.message);
       error && console.log(error.message);
@@ -103,7 +109,12 @@ function App() {
           />
         }
         
-        {currentWeather && <WeatherCard currentWeather={currentWeather} />}
+        {currentWeather && 
+          <WeatherCard 
+          currentWeather={currentWeather} 
+          locationOutputData={locationOutputData}
+        />
+        }
       </Container>
     </div>
   );
