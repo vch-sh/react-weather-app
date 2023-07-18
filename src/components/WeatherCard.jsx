@@ -17,7 +17,7 @@ const WeatherCard = ({ currentWeather, locationOutputData }) => {
 				{currentDate.year}
 			</div>
 			<div>{locationOutputData.name}</div>
-			<div>{locationOutputData.region}</div>
+			{/* <div>{locationOutputData.region}</div> */}
 			<div>{locationOutputData.country}</div>
 			<div>{locationOutputData.countryCode}</div>
 			<div>{currentWeather.current_weather.temperature}</div>

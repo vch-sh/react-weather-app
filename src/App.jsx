@@ -22,7 +22,10 @@ function App() {
 	const searchHandler = (e) => {
     e.preventDefault();
     
-    if (text.trim().length) fetchLocation();
+    if (text.trim().length) {
+      fetchLocation();
+      setShowSearchOptions(true);
+    }
 	}
 
 	const fetchLocation = async () => {
@@ -89,6 +92,8 @@ function App() {
   const clickHandler = (e) => {
     e.preventDefault();
     fetchCurrentWeather();
+    setShowSearchOptions(true);
+    setLocations([]);
   }
 
   return (
