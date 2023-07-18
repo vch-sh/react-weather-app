@@ -3,27 +3,20 @@ import Button from '../UI/Button';
 import Input from '../UI/Input';
 import styles from '../scss/InputForm.module.scss';
 
-const InputForm = () => {
-
-	const [text, setText] = useState('');
-
-	const inputHandler = (e) => {
-		setText(e.target.value);
-	}
-
-	const searchHandler = (e) => {
-		e.preventDefault();
-	}
+const InputForm = ({ text, inputHandler, searchHandler, clickHandler }) => {
 
 	return (
-		<form className={styles.inputForm}>
-			
+		<form 
+			className={styles.inputForm}
+			onChange={searchHandler}
+		>
+
 			<Input 
 				text={text}
 				inputHandler={inputHandler}
 			/>
 
-			<Button searchHandler={searchHandler}>
+			<Button clickHandler={clickHandler}>
 				Search
 			</Button>
 

@@ -1,8 +1,8 @@
 import styles from '../scss/Button.module.scss';
 
-const Button = ({children, searchHandler}) => {
+const Button = ({ children, clickHandler }) => {
 	return (
-		<button onClick={searchHandler}>{children}</button>
+		<button onClick={clickHandler}>{children}</button>
 	)
 }
 

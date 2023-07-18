@@ -1,0 +1,15 @@
+.search {
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+.options {
+	border-bottom: 1px solid black;
+	padding: 5px;
+	transition: .3s;
+	margin-bottom: 5px;
+
+	&:hover {
+		background-color: rgba(128, 128, 128, 0.205);
+	}
+}
