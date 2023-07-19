@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
+import {ReactComponent as Loading} from '../assets/loading.svg';
 import styles from '../scss/InputForm.module.scss';
 
-const InputForm = ({ text, inputHandler, searchHandler, clickHandler }) => {
+const InputForm = ({ text, inputHandler, searchHandler, clickHandler, isLoading }) => {
 
 	return (
 		<form 
@@ -15,8 +15,12 @@ const InputForm = ({ text, inputHandler, searchHandler, clickHandler }) => {
 				text={text}
 				inputHandler={inputHandler}
 			/>
+			{isLoading && <Loading className={styles.loader} />}
+			
 
-			<Button clickHandler={clickHandler}>
+			<Button 
+				clickHandler={clickHandler}
+			>
 				Search
 			</Button>
 

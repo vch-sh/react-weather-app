@@ -14,6 +14,8 @@ function App() {
   const [coordinates, setCoordinates] = useState({ latitude: '', longitude: '' });
   const [currentWeather, setCurrentWearher] = useState();
   const [showSearchOptions, setShowSearchOptions] = useState(true);
+  const [showWeatherCard, setShowWeatherCard] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
 	const inputHandler = (e) => {
 		setText(e.target.value);
@@ -30,15 +32,19 @@ function App() {
 
 	const fetchLocation = async () => {
 		try {
+      setIsLoading(true);
+      setShowWeatherCard(false);
 			const fetchDataByCityName = await fetch(`
 				https://geocoding-api.open-meteo.com/v1/search?name=${text}&count=50&language=en&format=json
 			`)
 			const cityNameData = await fetchDataByCityName.json();
 	
 			setLocations(cityNameData.results);
+      setIsLoading(false);
 			console.log(cityNameData.results);
 		} catch (error) {
 			setError(error.message);
+      setIsLoading(false);
 			error && console.log(error.message);
 		}
 	}
@@ -77,14 +83,17 @@ function App() {
   
   const fetchCurrentWeather = async () => {
     try {
+      setIsLoading(true);
       const fetchCurrentWeather = await fetch(`
-        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&current_weather=true
+        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&current_weather=true&temperature_unit=celsius
       `)
       const currentWeatherData = await fetchCurrentWeather.json();
       setCurrentWearher(currentWeatherData);
       setText('');
+      setIsLoading(false);
     } catch (error) {
       setError(error.message);
+      setIsLoading(false);
       error && console.log(error.message);
     }
   }
@@ -94,6 +103,7 @@ function App() {
     fetchCurrentWeather();
     setShowSearchOptions(true);
     setLocations([]);
+    setShowWeatherCard(true);
   }
 
   return (
@@ -104,20 +114,22 @@ function App() {
           inputHandler={inputHandler}
           searchHandler={searchHandler}
           clickHandler={clickHandler}
+          showSearchOptions={showSearchOptions}
+          isLoading={isLoading}
         />
 
         {text && locations && showSearchOptions &&
           <SearchOptions 
             locations={locations} 
             searchOptionsHandler={searchOptionsHandler}
-            fetchCurrentWeather={fetchCurrentWeather}
           />
         }
         
-        {currentWeather && 
+        {currentWeather && showWeatherCard &&
           <WeatherCard 
           currentWeather={currentWeather} 
           locationOutputData={locationOutputData}
+          isLoading={isLoading}
         />
         }
       </Container>

@@ -5,6 +5,7 @@ const Input = ({ text, inputHandler }) => {
 	return (
 		<input 
 			type="text"
+			className={styles.input}
 			value={text}
 			onChange={inputHandler}
 		/>
