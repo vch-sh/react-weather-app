@@ -10,7 +10,31 @@
 .loader {
 	position: absolute;
 	top: 10px;
-	left: 0;
+	left: -5%;
 	width: 20px;
 	height: 20px;
+}
+
+.tempUnits {
+	position: absolute;
+	top: 5px;
+	right: 100px;
+	z-index: 5;
+	width: 30px;
+	height: 30px;
+	background-color: rgba(0, 0, 0, 0.192);
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: .2s;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+	&:active {
+		transform: scale(0.9);
+	}
 }

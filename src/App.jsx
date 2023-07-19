@@ -6,16 +6,16 @@ import Container from './components/Container';
 import './scss/App.scss';
 
 function App() {
-
   const [text, setText] = useState('');
 	const [locations, setLocations] = useState([]);
   const [locationOutputData, setLocationOutputData] = useState({});
 	const [error, setError] = useState('');
   const [coordinates, setCoordinates] = useState({ latitude: '', longitude: '' });
-  const [currentWeather, setCurrentWearher] = useState();
+  const [currentTemperature, setCurrentWearher] = useState();
   const [showSearchOptions, setShowSearchOptions] = useState(true);
   const [showWeatherCard, setShowWeatherCard] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [tempUnits, setTempUnits] = useState('celsius');
 
 	const inputHandler = (e) => {
 		setText(e.target.value);
@@ -76,18 +76,18 @@ function App() {
   },[coordinates]);
 
   useEffect(() => {
-    if (currentWeather) {
-      console.log(currentWeather);
+    if (currentTemperature) {
+      console.log(currentTemperature);
     }
-  },[currentWeather]);
+  },[currentTemperature]);
   
-  const fetchCurrentWeather = async () => {
+  const fetchCurrentTemperature = async () => {
     try {
       setIsLoading(true);
-      const fetchCurrentWeather = await fetch(`
-        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&current_weather=true&temperature_unit=celsius
+      const fetchCurrentTemperature = await fetch(`
+        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&current_weather=true&temperature_unit=${tempUnits}
       `)
-      const currentWeatherData = await fetchCurrentWeather.json();
+      const currentWeatherData = await fetchCurrentTemperature.json();
       setCurrentWearher(currentWeatherData);
       setText('');
       setIsLoading(false);
@@ -100,11 +100,15 @@ function App() {
 
   const clickHandler = (e) => {
     e.preventDefault();
-    fetchCurrentWeather();
+    fetchCurrentTemperature();
     setShowSearchOptions(true);
     setLocations([]);
     setShowWeatherCard(true);
   }
+
+  const tempUnitsHandler = () => {
+		
+	}
 
   return (
     <div className="app">
@@ -116,6 +120,9 @@ function App() {
           clickHandler={clickHandler}
           showSearchOptions={showSearchOptions}
           isLoading={isLoading}
+          tempUnits={tempUnits}
+          setTempUnits={setTempUnits}
+          setShowWeatherCard={setShowWeatherCard}
         />
 
         {text && locations && showSearchOptions &&
@@ -125,9 +132,9 @@ function App() {
           />
         }
         
-        {currentWeather && showWeatherCard &&
+        {currentTemperature && showWeatherCard &&
           <WeatherCard 
-          currentWeather={currentWeather} 
+          currentTemperature={currentTemperature} 
           locationOutputData={locationOutputData}
           isLoading={isLoading}
         />

@@ -3,7 +3,8 @@
 	bottom: 35%;
 	transform: translateX(-50%, 50%);
 	border: 1px solid black;
-	width: 600px;
+	border-radius: 8px;
+	width: 620px;
 	padding: 20px;
 
 	font-size: 20px;
@@ -14,7 +15,7 @@
 .weatherCard__textInfo {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
 	gap: 8px;
 }
