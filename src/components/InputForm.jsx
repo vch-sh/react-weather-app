@@ -3,10 +3,11 @@ import Input from '../UI/Input';
 import {ReactComponent as Loading} from '../assets/loading.svg';
 import styles from '../scss/InputForm.module.scss';
 
-const InputForm = ({ text, inputHandler, searchHandler, clickHandler, isLoading, tempUnits, setTempUnits, setShowWeatherCard }) => {
+const InputForm = ({ text, inputHandler, searchHandler, clickHandler, isLoading, tempUnits, setTempUnits, setShowWeatherCard, setShowDetails }) => {
 	
 	const tempUnitsHandler = (tempUnits) => {
 		setShowWeatherCard(false);
+		setShowDetails(false);
 		tempUnits === 'celsius' ? setTempUnits('fahrenheit') : setTempUnits('celsius');
 	}
 
@@ -29,7 +30,6 @@ const InputForm = ({ text, inputHandler, searchHandler, clickHandler, isLoading,
 				<span>°</span><span>{tempUnits[0].toUpperCase()}</span>
 			</div>
 			
-
 			<Button 
 				clickHandler={clickHandler}
 			>

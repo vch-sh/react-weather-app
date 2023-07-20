@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import InputForm from './components/InputForm';
 import WeatherCard from './components/WeatherCard';
 import SearchOptions from './components/SearchOptions';
+import MoreDetails from './components/MoreDetails';
 import Container from './components/Container';
 import './scss/App.scss';
 
@@ -16,6 +17,8 @@ function App() {
   const [showWeatherCard, setShowWeatherCard] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [tempUnits, setTempUnits] = useState('celsius');
+  const [hourly, setHourly] = useState();
+  const [showDetails, setShowDetails] = useState(false);
 
 	const inputHandler = (e) => {
 		setText(e.target.value);
@@ -27,6 +30,7 @@ function App() {
     if (text.trim().length) {
       fetchLocation();
       setShowSearchOptions(true);
+      setShowDetails(false);
     }
 	}
 
@@ -71,15 +75,24 @@ function App() {
   // Delete later.
   useEffect(() => {
     if (coordinates.latitude && coordinates.longitude) {
+      console.log('coordinates');
       console.log(coordinates);
     }
   },[coordinates]);
 
   useEffect(() => {
     if (currentTemperature) {
+      console.log('currentTemperature');
       console.log(currentTemperature);
     }
   },[currentTemperature]);
+
+  useEffect(() => {
+    if (hourly) {
+      console.log('hourly');
+      console.log(hourly);
+    }
+  }, [hourly])
   
   const fetchCurrentTemperature = async () => {
     try {
@@ -98,17 +111,31 @@ function App() {
     }
   }
 
-  const clickHandler = (e) => {
+  const fetchDetails = async () => {
+    try {
+      const fetchDetailsData = await fetch(`
+        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&hourly=temperature_2m&timezone=GMT&temperature_unit=${tempUnits}
+      `);
+      const hourlyData = await fetchDetailsData.json();
+      setHourly(hourlyData);
+    } catch (error) {
+      setError(error.message);
+      error && console.log(error.message);
+    }
+  }
+
+  const clickHandler = async (e) => {
     e.preventDefault();
-    fetchCurrentTemperature();
+    await fetchCurrentTemperature();
     setShowSearchOptions(true);
     setLocations([]);
     setShowWeatherCard(true);
+    await fetchDetails();
   }
 
-  const tempUnitsHandler = () => {
-		
-	}
+  const showDetailsHandler = () => {
+    setShowDetails(true);
+  }
 
   return (
     <div className="app">
@@ -123,6 +150,7 @@ function App() {
           tempUnits={tempUnits}
           setTempUnits={setTempUnits}
           setShowWeatherCard={setShowWeatherCard}
+          setShowDetails={setShowDetails}
         />
 
         {text && locations && showSearchOptions &&
@@ -134,10 +162,17 @@ function App() {
         
         {currentTemperature && showWeatherCard &&
           <WeatherCard 
-          currentTemperature={currentTemperature} 
-          locationOutputData={locationOutputData}
-          isLoading={isLoading}
+            currentTemperature={currentTemperature} 
+            locationOutputData={locationOutputData}
+            isLoading={isLoading}
+            showDetailsHandler={showDetailsHandler}
         />
+        }
+
+        {showDetails && 
+          <MoreDetails
+            hourly={hourly}
+          />
         }
       </Container>
     </div>

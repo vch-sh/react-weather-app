@@ -9,5 +9,9 @@
 	&:hover {
 		background-color: #121212;
 		color: white;
+		transform: scale(1.1);
+	}
+	&:active {
+		transform: scale(0.9);
 	}
 }

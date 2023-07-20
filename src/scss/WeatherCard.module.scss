@@ -1,10 +1,8 @@
 .weatherCard {
-	position: absolute;
-	bottom: 35%;
 	transform: translateX(-50%, 50%);
 	border: 1px solid black;
 	border-radius: 8px;
-	width: 620px;
+	width: 650px;
 	padding: 20px;
 
 	font-size: 20px;
@@ -22,4 +20,14 @@
 
 .weatherCard__tempInfo {
 	font-size: 56px;
+}
+
+.moreDetails {
+	display: flex;
+	justify-content: flex-end;
+
+	&:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
 }
