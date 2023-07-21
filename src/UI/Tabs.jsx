@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '../scss/Tabs.module.scss';
 
-const Tabs = () => {
+const Tabs = ({ hourly, tempForSpecificDay }) => {
 
 	const [toggleState, setToggleState] = useState(1);
 
@@ -15,10 +15,10 @@ const Tabs = () => {
 		const currentDate = {
 			day: date.getDate(),
 			month: date.toLocaleString('en', { month: 'long' }),
-			dayOfWeek: daysOfWeekShort[date.getDay()]
+			dayOfWeek: daysOfWeekShort[date.getDay()],
 		}
 
-		const weekDates = [currentDate];
+		const nextWeekDates = [currentDate];
 
 		let nextDayDate;
 
@@ -31,27 +31,32 @@ const Tabs = () => {
 				month: nextDayDate.toLocaleString('en', { month: 'long' }),
 				dayOfWeek: daysOfWeekShort[nextDayDate.getDay()]
 			}
-			weekDates.push(nextDay);
+			nextWeekDates.push(nextDay);
 		}
-		return weekDates;
+		return nextWeekDates;
 	}
 
-	const weekDates = getNextWeekDates();
+	const nextWeekDates = getNextWeekDates();
 
 	const getHours = () => {
 		const hours = [];
-		for (let i = 0; i < 23; i += 2) {
+		for (let i = 0; i <= 21; i += 3) {
 			hours.push(i < 10 ? '0' + `${i}` + ':00' : i + ':00');
 		}
 		return hours;
 	}
 	const hours = getHours();
 
+	// const getTemperatureForSelectedDay = () => {
+	// 	const selectedDay = nextWeekDates[toggleState - 1].dayOfWeek;
+	// 	return tempForSpecificDay[selectedDay]
+	// }
+
 	return (
 		<div className={styles.tabs}>
 			<div className={styles.tabsNav}>
 				
-				{weekDates.map((item, index) => (
+				{nextWeekDates.map((item, index) => (
 					<button 
 						key={item.dayOfWeek}
 						className={toggleState === index + 1 ? styles.tabsNavBtnActive : styles.tabsNavBtn}
@@ -68,9 +73,84 @@ const Tabs = () => {
 						key={index}
 						className={toggleState === index + 1 ? styles.tabsContentItemActive : styles.tabsContentItem}
 					>
-						{hours.map((hour, i) => (
-							<div key={i}>{hour}</div>
-						))}
+						<table>
+							<thead>
+								<tr>
+									<th>#</th>									
+									{hours.map((hour, i) => (
+										<th key={i}>{hour}</th>
+									))}
+								</tr>
+							</thead>
+							<tbody>
+							<tr>
+									<td>temperature</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>pressure</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>humidity</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>windspeed</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>cloudcover</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>visibility</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				))}
 			</div>

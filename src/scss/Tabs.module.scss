@@ -7,17 +7,22 @@
 }
 
 .tabsNavBtn {
-	padding: 5px;
+	padding: 11px;
 	cursor: pointer;
 }
 
 .tabsNavBtnActive {
-	padding: 5px;
+	@extend .tabsNavBtn;
 	font-weight: 700;
 }
 
 .tabsContent {
 	
+	& div table {
+		border: 1px solid black;
+		width: 100%;
+		text-align: center;
+	}
 }
 
 .tabsContentItem {
@@ -26,6 +31,5 @@
 
 .tabsContentItemActive {
 	display: block;
-	display: flex;
 	gap: 10px;
 }
