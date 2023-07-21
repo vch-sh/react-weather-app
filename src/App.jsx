@@ -172,6 +172,7 @@ function App() {
         {showDetails && 
           <MoreDetails
             hourly={hourly}
+            tempUnits={tempUnits}
           />
         }
       </Container>

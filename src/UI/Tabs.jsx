@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '../scss/Tabs.module.scss';
 
-const Tabs = ({ hourly, tempForSpecificDay }) => {
+const Tabs = ({ tempForSpecificDay, tempUnits }) => {
 
 	const [toggleState, setToggleState] = useState(1);
 
@@ -47,10 +47,11 @@ const Tabs = ({ hourly, tempForSpecificDay }) => {
 	}
 	const hours = getHours();
 
-	// const getTemperatureForSelectedDay = () => {
-	// 	const selectedDay = nextWeekDates[toggleState - 1].dayOfWeek;
-	// 	return tempForSpecificDay[selectedDay]
-	// }
+	const getTemperatureForSpecificDay = () => {
+		const specificDay = nextWeekDates[toggleState - 1].dayOfWeek;
+		return tempForSpecificDay[specificDay]
+	}
+	const specificDayTemp = getTemperatureForSpecificDay();
 
 	return (
 		<div className={styles.tabs}>
@@ -85,14 +86,9 @@ const Tabs = ({ hourly, tempForSpecificDay }) => {
 							<tbody>
 							<tr>
 									<td>temperature</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
+									{specificDayTemp.map((tempItem, index) => (
+										<td key={index}>{tempItem} <span>°</span><span>{tempUnits[0].toUpperCase()}</span></td>
+									))}
 								</tr>
 								<tr>
 									<td>pressure</td>

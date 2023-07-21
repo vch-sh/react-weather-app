@@ -1,13 +1,7 @@
 import Tabs from '../UI/Tabs';
 import styles from '../scss/MoreDetails.module.scss';
 
-const MoreDetails = ({ hourly }) => {
- 
-	const tempUnits = () => {
-		console.log('hourly.hourly_units.temperature_2m');
-		console.log(hourly.hourly_units.temperature_2m);
-	}
-	// tempUnits()
+const MoreDetails = ({ hourly, tempUnits }) => {
 
 	const getTempForWeek = () => {
 		const res = [];
@@ -24,7 +18,7 @@ const MoreDetails = ({ hourly }) => {
 	}
 
 	const tempForSpecificDay = {
-		'Sun': getTempForSpecificDay(detailedTemperatureData, 48),
+		'Sun': getTempForSpecificDay(detailedTemperatureData, 48, 56),
 		'Mon': getTempForSpecificDay(detailedTemperatureData, 0, 8),
 		'Tue': getTempForSpecificDay(detailedTemperatureData, 8, 16),
 		'Wed': getTempForSpecificDay(detailedTemperatureData, 16, 24),
@@ -35,7 +29,10 @@ const MoreDetails = ({ hourly }) => {
 
 	return (
 		<div className={styles.moreDetails}>
-			<Tabs tempForSpecificDay={tempForSpecificDay} />
+			<Tabs 
+				tempForSpecificDay={tempForSpecificDay}
+				tempUnits={tempUnits} 
+			/>
 		</div>
 	)
 }
