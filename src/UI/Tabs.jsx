@@ -86,9 +86,9 @@ const Tabs = ({ tempForSpecificDay, tempUnits }) => {
 							<tbody>
 							<tr>
 									<td>temperature</td>
-									{specificDayTemp.map((tempItem, index) => (
-										<td key={index}>{tempItem} <span>°</span><span>{tempUnits[0].toUpperCase()}</span></td>
-									))}
+										{specificDayTemp.map((tempItem, index) => (
+											<td key={index}>{tempItem} <span>°</span><span>{tempUnits[0].toUpperCase()}</span></td>
+										))}
 								</tr>
 								<tr>
 									<td>pressure</td>
