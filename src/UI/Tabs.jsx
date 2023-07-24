@@ -1,9 +1,19 @@
 import { useState } from 'react';
 import styles from '../scss/Tabs.module.scss';
 
-const Tabs = ({ tempForSpecificDay, tempUnits }) => {
+const Tabs = ({
+	hourly, 
+	tempForSpecificDay,  
+	humidityForSpecificDay, 
+	pressureForSpecificDay, 
+	cloudcoverForSpecificDay, 
+	windspeedForSpecificDay,
+	rainForSpecificDay,
+	snowfallForSpecificDay
+}) => {
 
 	const [toggleState, setToggleState] = useState(1);
+	const [hourlyUnits, setHourlyUnits] = useState(hourly);
 
 	const toggleTab = (index) => {
 		setToggleState(index);
@@ -47,11 +57,17 @@ const Tabs = ({ tempForSpecificDay, tempUnits }) => {
 	}
 	const hours = getHours();
 
-	const getTemperatureForSpecificDay = () => {
+	const getDataForSpecificDay = (data) => {
 		const specificDay = nextWeekDates[toggleState - 1].dayOfWeek;
-		return tempForSpecificDay[specificDay]
+		return data[specificDay];
 	}
-	const specificDayTemp = getTemperatureForSpecificDay();
+	const specificDayTemp = getDataForSpecificDay(tempForSpecificDay);
+	const specificDayHumidity = getDataForSpecificDay(humidityForSpecificDay);
+	const specificDayPressure = getDataForSpecificDay(pressureForSpecificDay);
+	const specificDayCloudcover = getDataForSpecificDay(cloudcoverForSpecificDay);
+	const specificDayWindSpeed = getDataForSpecificDay(windspeedForSpecificDay);
+	const specificDayRain = getDataForSpecificDay(rainForSpecificDay);
+	const specificDaySnowfall = getDataForSpecificDay(snowfallForSpecificDay);
 
 	return (
 		<div className={styles.tabs}>
@@ -84,66 +100,47 @@ const Tabs = ({ tempForSpecificDay, tempUnits }) => {
 								</tr>
 							</thead>
 							<tbody>
-							<tr>
-									<td>temperature</td>
-										{specificDayTemp.map((tempItem, index) => (
-											<td key={index}>{tempItem} <span>°</span><span>{tempUnits[0].toUpperCase()}</span></td>
+								<tr>
+									<td>Temperature, <span>{hourlyUnits.hourly_units.temperature_2m}</span></td>
+										{specificDayTemp.map((item, index) => (
+											<td key={index}>{item}</td>
 										))}
 								</tr>
 								<tr>
-									<td>pressure</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
+									<td>Pressure, mm</td>
+										{specificDayPressure.map((item, index) => (
+											<td key={index}>{(item * 0.75).toFixed(2)}<span></span></td>
+										))}
 								</tr>
 								<tr>
-									<td>humidity</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
+									<td>Humidity, <span>{hourlyUnits.hourly_units.relativehumidity_2m}</span></td>
+									{specificDayHumidity.map((item, index) => (
+										<td key={index}>{item ? item : '-'}</td>
+									))}
+								</tr>
+								<tr>  
+									<td>Windspeed, <span>{hourlyUnits.hourly_units.windspeed_10m}</span></td>
+										{specificDayWindSpeed.map((item, index) => (
+											<td key={index}>{item ? item : '-'}</td>
+										))}
+								</tr>
+								<tr> 
+									<td>Cloudcover, <span>{hourlyUnits.hourly_units.cloudcover}</span></td>
+									{specificDayCloudcover.map((item, index) => (
+										<td key={index}>{item ? item : '-'}</td>
+									))}
 								</tr>
 								<tr>
-									<td>windspeed</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
+									<td>Rain, <span>{hourlyUnits.hourly_units.rain}</span></td>
+										{specificDayRain.map((item, index) => (
+											<td key={index}>{item ? item : '-'}</td>
+										))}
 								</tr>
 								<tr>
-									<td>cloudcover</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-								</tr>
-								<tr>
-									<td>visibility</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
-									<td>0</td>
+									<td>Snowfall, <span>{hourlyUnits.hourly_units.snowfall}</span></td>
+										{specificDaySnowfall.map((item, index) => (
+											<td key={index}>{item ? item : '-'}</td>
+										))}
 								</tr>
 							</tbody>
 						</table>

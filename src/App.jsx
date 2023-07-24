@@ -114,7 +114,7 @@ function App() {
   const fetchDetails = async () => {
     try {
       const fetchDetailsData = await fetch(`
-        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&hourly=temperature_2m&timezone=GMT&temperature_unit=${tempUnits}
+        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&hourly=temperature_2m,relativehumidity_2m,pressure_msl,cloudcover,windspeed_10m,rain,snowfall&timezone=GMT&temperature_unit=${tempUnits}
       `);
       const hourlyData = await fetchDetailsData.json();
       setHourly(hourlyData);
