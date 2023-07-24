@@ -1,5 +1,5 @@
 This app will be implemented in React. 
 
-Then I will remade it with Redux. 
+Then I will remake it with Redux. 
 
-After that I will add TypeScript to it.
+After that, I will add TypeScript to it.
