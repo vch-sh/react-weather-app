@@ -1,4 +1,3 @@
-import {ReactComponent as Loading} from '../assets/loading.svg';
 import styles from '../scss/SearchOptions.module.scss';
 
 const SearchOptions = ({ locations, searchOptionsHandler }) => {

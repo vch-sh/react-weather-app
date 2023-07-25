@@ -4,7 +4,7 @@ import WeatherCard from './components/WeatherCard';
 import SearchOptions from './components/SearchOptions';
 import MoreDetails from './components/MoreDetails';
 import Container from './components/Container';
-import './scss/App.scss';
+import styles from './scss/App.module.scss';
 
 function App() {
   const [text, setText] = useState('');
@@ -12,7 +12,6 @@ function App() {
   const [locationOutputData, setLocationOutputData] = useState({});
 	const [error, setError] = useState('');
   const [coordinates, setCoordinates] = useState({ latitude: '', longitude: '' });
-  // const [currentTemperature, setCurrentWearher] = useState();
   const [showSearchOptions, setShowSearchOptions] = useState(true);
   const [showWeatherCard, setShowWeatherCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +21,14 @@ function App() {
 
 	const inputHandler = (e) => {
 		setText(e.target.value);
+    setError('');
 	}
+
+  useEffect(() => {
+    if (text) {
+      setError('');
+    }
+  }, [text]);
   
 	const searchHandler = (e) => {
     e.preventDefault();
@@ -48,7 +54,6 @@ function App() {
 		} catch (error) {
 			setError(error.message);
       setIsLoading(false);
-			error && console.log(error.message);
 		}
 	}
   
@@ -67,12 +72,17 @@ function App() {
           countryCode: location.country_code
         });
         setShowSearchOptions(false);
+        fetchDetails();
       }
     })
   }
 
   const fetchDetails = async () => {
     try {
+      if (!coordinates.latitude && !coordinates.longitude) {
+        return;
+      }
+
       const fetchDetailsData = await fetch(`
         https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&hourly=temperature_2m,relativehumidity_2m,pressure_msl,cloudcover,windspeed_10m,rain,snowfall&timezone=GMT&temperature_unit=${tempUnits}
       `);
@@ -80,16 +90,17 @@ function App() {
       setHourly(hourlyData);
     } catch (error) {
       setError(error.message);
-      error && console.log(error.message);
     }
   }
 
   const clickHandler = async (e) => {
     e.preventDefault();
-    setShowSearchOptions(true);
-    setLocations([]);
-    fetchDetails();
-    setShowWeatherCard(true);
+    if (text.trim().length && locations.length > 0) {
+      setShowSearchOptions(true);
+      setLocations([]);
+      fetchDetails();
+      setShowWeatherCard(true);
+    }
   }
 
   const showDetailsHandler = () => {
@@ -97,7 +108,7 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className={styles.app}>
       <Container>
         <InputForm
           text={text}
@@ -111,6 +122,8 @@ function App() {
           setShowWeatherCard={setShowWeatherCard}
           setShowDetails={setShowDetails}
         />
+
+        {!!error && <p className={styles.errorMessage}>Error: {error}</p>}
 
         {text && locations && showSearchOptions &&
           <SearchOptions 
