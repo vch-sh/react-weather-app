@@ -3,7 +3,17 @@ import Input from '../UI/Input';
 import {ReactComponent as Loading} from '../assets/loading.svg';
 import styles from '../scss/InputForm.module.scss';
 
-const InputForm = ({ text, inputHandler, searchHandler, clickHandler, isLoading, tempUnits, setTempUnits, setShowWeatherCard, setShowDetails }) => {
+const InputForm = ({ 
+	text, 
+	inputHandler, 
+	searchHandler, 
+	clickHandler, 
+	isLoading, 
+	tempUnits, 
+	setTempUnits, 
+	setShowWeatherCard, 
+	setShowDetails 
+}) => {
 	
 	const tempUnitsHandler = (tempUnits) => {
 		setShowWeatherCard(false);

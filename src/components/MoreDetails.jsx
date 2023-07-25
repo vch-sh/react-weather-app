@@ -1,7 +1,7 @@
 import Tabs from '../UI/Tabs';
 import styles from '../scss/MoreDetails.module.scss';
 
-const MoreDetails = ({ hourly }) => {
+const MoreDetails = ({ hourly, setCurrentWearher }) => {
 
 	const getDataForWeekBySpecificHour = (data) => {
 		const res = [];
@@ -10,7 +10,7 @@ const MoreDetails = ({ hourly }) => {
 		}
 		return res;
 	}
-
+	
 	const detailedTemperatureData = getDataForWeekBySpecificHour(hourly.hourly.temperature_2m);
 	const detailedHumidityData = getDataForWeekBySpecificHour(hourly.hourly.relativehumidity_2m);
 	const detailedPressureData = getDataForWeekBySpecificHour(hourly.hourly.pressure_msl);

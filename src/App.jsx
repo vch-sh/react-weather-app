@@ -12,9 +12,9 @@ function App() {
   const [locationOutputData, setLocationOutputData] = useState({});
 	const [error, setError] = useState('');
   const [coordinates, setCoordinates] = useState({ latitude: '', longitude: '' });
-  const [currentTemperature, setCurrentWearher] = useState();
+  // const [currentTemperature, setCurrentWearher] = useState();
   const [showSearchOptions, setShowSearchOptions] = useState(true);
-  const [showWeatherCard, setShowWeatherCard] = useState(true);
+  const [showWeatherCard, setShowWeatherCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [tempUnits, setTempUnits] = useState('celsius');
   const [hourly, setHourly] = useState();
@@ -45,7 +45,6 @@ function App() {
 	
 			setLocations(cityNameData.results);
       setIsLoading(false);
-			console.log(cityNameData.results);
 		} catch (error) {
 			setError(error.message);
       setIsLoading(false);
@@ -72,45 +71,6 @@ function App() {
     })
   }
 
-  // Delete later.
-  useEffect(() => {
-    if (coordinates.latitude && coordinates.longitude) {
-      console.log('coordinates');
-      console.log(coordinates);
-    }
-  },[coordinates]);
-
-  useEffect(() => {
-    if (currentTemperature) {
-      console.log('currentTemperature');
-      console.log(currentTemperature);
-    }
-  },[currentTemperature]);
-
-  useEffect(() => {
-    if (hourly) {
-      console.log('hourly');
-      console.log(hourly);
-    }
-  }, [hourly])
-  
-  const fetchCurrentTemperature = async () => {
-    try {
-      setIsLoading(true);
-      const fetchCurrentTemperature = await fetch(`
-        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&current_weather=true&temperature_unit=${tempUnits}
-      `)
-      const currentWeatherData = await fetchCurrentTemperature.json();
-      setCurrentWearher(currentWeatherData);
-      setText('');
-      setIsLoading(false);
-    } catch (error) {
-      setError(error.message);
-      setIsLoading(false);
-      error && console.log(error.message);
-    }
-  }
-
   const fetchDetails = async () => {
     try {
       const fetchDetailsData = await fetch(`
@@ -126,11 +86,10 @@ function App() {
 
   const clickHandler = async (e) => {
     e.preventDefault();
-    await fetchCurrentTemperature();
     setShowSearchOptions(true);
     setLocations([]);
+    fetchDetails();
     setShowWeatherCard(true);
-    await fetchDetails();
   }
 
   const showDetailsHandler = () => {
@@ -160,11 +119,10 @@ function App() {
           />
         }
         
-        {currentTemperature && showWeatherCard &&
+        {hourly && showWeatherCard &&
           <WeatherCard 
-            currentTemperature={currentTemperature} 
+            hourly={hourly}
             locationOutputData={locationOutputData}
-            isLoading={isLoading}
             showDetailsHandler={showDetailsHandler}
         />
         }

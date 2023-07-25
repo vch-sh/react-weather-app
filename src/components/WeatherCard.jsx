@@ -1,12 +1,14 @@
 import styles from '../scss/WeatherCard.module.scss';
 
-const WeatherCard = ({ currentTemperature, locationOutputData, showDetailsHandler }) => {
+const WeatherCard = ({ hourly, locationOutputData, showDetailsHandler }) => {
 
 	const date = new Date();
 	const currentDate = {
 		day: date.getDate(),
 		month: date.toLocaleString('en', { month: 'long' }),
 	}
+
+	const currentlyHourTemp = hourly?.hourly.temperature_2m[new Date().getHours()];
 		
 	return (	
 		<>
@@ -20,7 +22,7 @@ const WeatherCard = ({ currentTemperature, locationOutputData, showDetailsHandle
 					</div>
 				</div>
 				<div className={styles.weatherCard__tempInfo}>
-					{currentTemperature.current_weather.temperature}<span>°</span>
+					{currentlyHourTemp}<span>°</span>
 				</div>
 			</div>
 			<span 
