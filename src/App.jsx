@@ -12,12 +12,17 @@ function App() {
   const [locationOutputData, setLocationOutputData] = useState({});
 	const [error, setError] = useState('');
   const [coordinates, setCoordinates] = useState({ latitude: '', longitude: '' });
+  const [weatherCode, setWeatherCode] = useState();
   const [showSearchOptions, setShowSearchOptions] = useState(true);
   const [showWeatherCard, setShowWeatherCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [tempUnits, setTempUnits] = useState('celsius');
   const [hourly, setHourly] = useState();
   const [showDetails, setShowDetails] = useState(false);
+
+  useEffect(() => {
+    console.log(weatherCode);
+  }, [weatherCode])
 
 	const inputHandler = (e) => {
 		setText(e.target.value);
@@ -39,6 +44,22 @@ function App() {
       setShowDetails(false);
     }
 	}
+
+  const fetchWeatherCode = async () => {
+    try {
+      setIsLoading(true);
+      const fetchWeatherCode = await fetch(`
+        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&current_weather=true
+      `)
+      const weatherCode = await fetchWeatherCode.json();
+      setWeatherCode(weatherCode.current_weather.weathercode);
+      setText('');
+      setIsLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
+    }
+  }
 
 	const fetchLocation = async () => {
 		try {
@@ -84,7 +105,7 @@ function App() {
       }
 
       const fetchDetailsData = await fetch(`
-        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&hourly=temperature_2m,relativehumidity_2m,pressure_msl,cloudcover,windspeed_10m,rain,snowfall&timezone=GMT&temperature_unit=${tempUnits}
+        https://api.open-meteo.com/v1/forecast?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&hourly=temperature_2m,relativehumidity_2m,pressure_msl,cloudcover,windspeed_10m,rain,snowfall,weathercode&timezone=GMT&temperature_unit=${tempUnits}
       `);
       const hourlyData = await fetchDetailsData.json();
       setHourly(hourlyData);
@@ -98,6 +119,7 @@ function App() {
     if (text.trim().length && locations.length > 0) {
       setShowSearchOptions(true);
       setLocations([]);
+      fetchWeatherCode();
       fetchDetails();
       setShowWeatherCard(true);
     }
@@ -137,6 +159,7 @@ function App() {
             hourly={hourly}
             locationOutputData={locationOutputData}
             showDetailsHandler={showDetailsHandler}
+            weatherCode={weatherCode}
         />
         }
 

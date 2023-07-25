@@ -1,7 +1,7 @@
 import Tabs from '../UI/Tabs';
 import styles from '../scss/MoreDetails.module.scss';
 
-const MoreDetails = ({ hourly, setCurrentWearher }) => {
+const MoreDetails = ({ hourly }) => {
 
 	const getDataForWeekBySpecificHour = (data) => {
 		const res = [];

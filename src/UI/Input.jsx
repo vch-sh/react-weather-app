@@ -8,6 +8,7 @@ const Input = ({ text, inputHandler }) => {
 			className={styles.input}
 			value={text}
 			onChange={inputHandler}
+			placeholder="Enter city name"
 		/>
 	)
 }

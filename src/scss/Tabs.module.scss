@@ -3,11 +3,13 @@
 }
 
 .tabsNav {
-
+	display: flex;
+	justify-content: space-between;
 }
 
 .tabsNavBtn {
-	padding: 11px;
+	padding: 12px 12px;
+	font-size: 16px;
 	cursor: pointer;
 }
 
