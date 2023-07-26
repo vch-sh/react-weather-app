@@ -34,6 +34,7 @@ const Tabs = ({
 			day: date.getDate(),
 			month: date.toLocaleString('en', { month: 'long' }),
 			dayOfWeek: daysOfWeekShort[date.getDay()],
+			toggleState: toggleState - 1
 		}
 
 		const nextWeekDates = [currentDate];
@@ -66,9 +67,9 @@ const Tabs = ({
 	const hours = getHours();
 
 	const getDataForSpecificDay = (data) => {
-		const specificDay = nextWeekDates[toggleState - 1].dayOfWeek;
-		return data[specificDay];
+		return data[toggleState - 1];
 	}
+
 	const specificDayTemp = getDataForSpecificDay(tempForSpecificDay);
 	const specificDayHumidity = getDataForSpecificDay(humidityForSpecificDay);
 	const specificDayPressure = getDataForSpecificDay(pressureForSpecificDay);
