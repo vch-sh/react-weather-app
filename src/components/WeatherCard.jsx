@@ -3,7 +3,7 @@ import { ReactComponent as Cloud } from '../assets/icons/cloud.svg';
 import { ReactComponent as Haze } from '../assets/icons/haze.svg';
 import { ReactComponent as Rain } from '../assets/icons/rain.svg';
 import { ReactComponent as Snow } from '../assets/icons/snow.svg';
-import { ReactComponent as Thunderstorm } from '../assets/icons/storm.svg';
+import { ReactComponent as Thunderstorm } from '../assets/icons/thunderstorm.svg';
 import styles from '../scss/WeatherCard.module.scss';
 
 const WeatherCard = ({ 

@@ -20,10 +20,6 @@ function App() {
   const [hourly, setHourly] = useState();
   const [showDetails, setShowDetails] = useState(false);
 
-  useEffect(() => {
-    console.log(weatherCode);
-  }, [weatherCode])
-
 	const inputHandler = (e) => {
 		setText(e.target.value);
     setError('');
@@ -66,7 +62,7 @@ function App() {
       setIsLoading(true);
       setShowWeatherCard(false);
 			const fetchDataByCityName = await fetch(`
-				https://geocoding-api.open-meteo.com/v1/search?name=${text}&count=50&language=en&format=json
+				https://geocoding-api.open-meteo.com/v1/search?name=${text}&count=30&language=en&format=json
 			`)
 			const cityNameData = await fetchDataByCityName.json();
 	

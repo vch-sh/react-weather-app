@@ -1,13 +1,17 @@
 .weatherCard {
 	border: 2px solid black;
-	border-radius: 8px;
+	border-radius: 0 0 8px 8px;
 	width: 100%;
-	padding: 20px;
+	padding: 10px 20px;
 
 	font-size: 20px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	box-shadow: 0 0 2px black;
+	background-color: rgba(100, 148, 237, 0.217);
+
+	color: #363636;
 }
 
 .weatherCardTextInfo {
@@ -16,15 +20,15 @@
 	align-items: flex-start;
 	justify-content: center;
 	gap: 8px;
+	font-size: 24px;
 }
 
 .currentWeatherIcon svg {
-	width: 70px;
-	height: 70px;
+	height: 100px;
 }
 
 .weatherCardTempInfo {
-	font-size: 56px;
+	font-size: 60px;
 }
 
 .moreDetails {

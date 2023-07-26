@@ -1,5 +1,13 @@
 import { useState } from 'react';
+import { ReactComponent as RainTitle } from '../assets/icons/rain-title.svg';
+import { ReactComponent as WindspeedTitle } from '../assets/icons/windspeed-title.svg';
+import { ReactComponent as TemperatureTitle } from '../assets/icons/temperature-title.svg';
+import { ReactComponent as CloudTitle } from '../assets/icons/cloud-title.svg';
+import { ReactComponent as SnowTitle } from '../assets/icons/snow-title.svg';
+import { ReactComponent as PressureTitle } from '../assets/icons/pressure-title.svg';
+import { ReactComponent as HumidityTitle } from '../assets/icons/humidity-title.svg';
 import styles from '../scss/Tabs.module.scss';
+
 
 const Tabs = ({
 	hourly, 
@@ -93,54 +101,81 @@ const Tabs = ({
 						<table>
 							<thead>
 								<tr>
-									<th>#</th>									
+									<th className={styles.tabsContentItemTitle}>#</th>
 									{hours.map((hour, i) => (
-										<th key={i}>{hour}</th>
+										<td key={i} className={styles.tabsContentItemTitle}>{hour}</td>
 									))}
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>Temperature, <span>{hourlyUnits.hourly_units.temperature_2m}</span></td>
-										{specificDayTemp.map((item, index) => (
-											<td key={index}>{item}</td>
-										))}
+									<td className={`${styles.tabsContentItemTitle} ${styles.tabsContentItemTitlePositioning}`}>
+										<TemperatureTitle className={styles.tabsContentItemTitleIcon} />
+										Temperature, 
+										<span>{hourlyUnits.hourly_units.temperature_2m}</span>
+									</td>
+									{specificDayTemp.map((item, index) => (
+										<td key={index} className={styles.tabsContentItemInfo}>{item}</td>
+									))}
 								</tr>
 								<tr>
-									<td>Pressure, mm</td>
-										{specificDayPressure.map((item, index) => (
-											<td key={index}>{(item * 0.75).toFixed(2)}<span></span></td>
-										))}
+									<td className={`${styles.tabsContentItemTitle} ${styles.tabsContentItemTitlePositioning}`}>
+										<PressureTitle className={styles.tabsContentItemTitleIcon} />
+										Pressure, mm
+									</td>
+									{specificDayPressure.map((item, index) => (
+										<td key={index} className={styles.tabsContentItemInfo}>{(item * 0.75).toFixed(2)}<span></span></td>
+									))}
 								</tr>
 								<tr>
-									<td>Humidity, <span>{hourlyUnits.hourly_units.relativehumidity_2m}</span></td>
+									<td className={`${styles.tabsContentItemTitle} ${styles.tabsContentItemTitlePositioning}`}>
+										<HumidityTitle className={styles.tabsContentItemTitleIcon} />
+										Humidity, 
+										<span>{hourlyUnits.hourly_units.relativehumidity_2m}</span>
+									</td>
 									{specificDayHumidity.map((item, index) => (
-										<td key={index}>{item ? item : '-'}</td>
+										<td key={index} className={styles.tabsContentItemInfo}>{item ? item : '-'}</td>
 									))}
 								</tr>
 								<tr>  
-									<td>Windspeed, <span>{hourlyUnits.hourly_units.windspeed_10m}</span></td>
-										{specificDayWindSpeed.map((item, index) => (
-											<td key={index}>{item ? item : '-'}</td>
-										))}
+									<td className={`${styles.tabsContentItemTitle} ${styles.tabsContentItemTitlePositioning}`}>
+										<WindspeedTitle className={styles.tabsContentItemTitleIcon} />
+										Windspeed, 
+										<span>{hourlyUnits.hourly_units.windspeed_10m}</span>
+									</td>
+									{specificDayWindSpeed.map((item, index) => (
+										<td key={index} className={styles.tabsContentItemInfo}>{item ? item : '-'}</td>
+									))}
 								</tr>
 								<tr> 
-									<td>Cloudcover, <span>{hourlyUnits.hourly_units.cloudcover}</span></td>
+									<td className={`${styles.tabsContentItemTitle} ${styles.tabsContentItemTitlePositioning}`}>
+										<CloudTitle className={styles.tabsContentItemTitleIcon} />
+										Cloudcover, 
+										<span>{hourlyUnits.hourly_units.cloudcover}</span>
+									</td>
 									{specificDayCloudcover.map((item, index) => (
-										<td key={index}>{item ? item : '-'}</td>
+										<td key={index} className={styles.tabsContentItemInfo}>{item ? item : '-'}</td>
 									))}
 								</tr>
 								<tr>
-									<td>Rain, <span>{hourlyUnits.hourly_units.rain}</span></td>
-										{specificDayRain.map((item, index) => (
-											<td key={index}>{item ? item : '-'}</td>
-										))}
+									<td className={`${styles.tabsContentItemTitle} ${styles.tabsContentItemTitlePositioning}`}>
+										<RainTitle className={styles.tabsContentItemTitleIcon} />
+										Rain, 
+										<span>{hourlyUnits.hourly_units.rain}</span>
+									</td>
+									{specificDayRain.map((item, index) => (
+										<td key={index} className={styles.tabsContentItemInfo}>{item ? item : '-'}</td>
+									))}
 								</tr>
 								<tr>
-									<td>Snowfall, <span>{hourlyUnits.hourly_units.snowfall}</span></td>
-										{specificDaySnowfall.map((item, index) => (
-											<td key={index}>{item ? item : '-'}</td>
-										))}
+									<td className={`${styles.tabsContentItemTitle} ${styles.tabsContentItemTitlePositioning}`}>
+										<SnowTitle className={styles.tabsContentItemTitleIcon} />
+										Snowfall, 
+										<span>{hourlyUnits.hourly_units.snowfall}</span>
+									</td>
+									{specificDaySnowfall.map((item, index) => (
+										<td key={index} className={styles.tabsContentItemInfo}>{item ? item : '-'}</td>
+									))}
 								</tr>
 							</tbody>
 						</table>

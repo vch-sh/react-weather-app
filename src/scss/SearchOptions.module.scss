@@ -1,13 +1,16 @@
 .search {
-	max-height: 200px;
-	max-width: 700px;
+	max-height: 250px;
+	max-width: 950px;
 	overflow-y: auto;
+	background-color: #5f9ea009;
+	border-radius: 6px;
 }
 
 .options {
 	border-bottom: 1px solid black;
-	padding: 5px;
+	padding: 8px 5px;
 	transition: .3s;
+	font-size: 20px;
 	cursor: pointer;
 
 	&:hover {
