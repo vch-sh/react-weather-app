@@ -36,8 +36,8 @@ function App() {
     
     if (text.trim().length) {
       fetchLocation();
-      setShowSearchOptions(true);
       setShowDetails(false);
+      setShowSearchOptions(true);
     }
 	}
 

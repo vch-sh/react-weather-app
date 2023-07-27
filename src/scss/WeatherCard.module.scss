@@ -11,6 +11,7 @@
 	box-shadow: 0 0 2px #000;
 	background-color: variables.$weather-card-background-color;
 	color: variables.$weather-card-color;
+	animation: showWeatherCard 1s;
 }
 
 .weatherCardTextInfo {
@@ -38,5 +39,14 @@
 	&:hover {
 		text-decoration: underline;
 		cursor: pointer;
+	}
+}
+
+@keyframes showWeatherCard {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }

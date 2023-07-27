@@ -1,10 +1,9 @@
 @use 'variables';
 
 .search {
-	width: variables.$search-width;
-	height: variables.$search-height;
+	max-width: variables.$search-max-width;
+	max-height: variables.$search-max-height;
 	overflow-y: auto;
-	background-color: variables.$search-options-background-color;
 	border-radius: 6px;
 }
 
