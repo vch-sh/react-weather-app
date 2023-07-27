@@ -1,19 +1,21 @@
+@use 'variables';
+
 .search {
-	max-height: 250px;
-	max-width: 950px;
+	width: variables.$search-width;
+	height: variables.$search-height;
 	overflow-y: auto;
-	background-color: #5f9ea009;
+	background-color: variables.$search-options-background-color;
 	border-radius: 6px;
 }
 
 .options {
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #000;
 	padding: 8px 5px;
 	transition: .3s;
-	font-size: 20px;
+	font-size: variables.$search-options-font-size;
 	cursor: pointer;
 
 	&:hover {
-		background-color: rgba(128, 128, 128, 0.205);
+		background-color: variables.$search-options-hover-background-color;
 	}
 }

@@ -1,15 +1,16 @@
+@use 'variables';
+
 .weatherCard {
-	border: 2px solid black;
-	border-radius: 0 0 8px 8px;
-	padding: 10px 20px;
-	font-size: 20px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	box-shadow: 0 0 2px black;
-	background-color: rgba(100, 148, 237, 0.217);
-
-	color: #363636;
+	padding: 10px 20px;
+	border: 2px solid #000;
+	border-radius: 0 0 8px 8px;
+	font-size: variables.$weather-card-font-size;
+	box-shadow: 0 0 2px #000;
+	background-color: variables.$weather-card-background-color;
+	color: variables.$weather-card-color;
 }
 
 .weatherCardTextInfo {
@@ -18,16 +19,16 @@
 	align-items: flex-start;
 	justify-content: center;
 	gap: 8px;
-	font-size: 24px;
+	font-size: variables.$weather-card-text-info-font-size;
 }
 
 .currentWeatherIcon svg {
-	width: 80px;
-	height: 80px;
+	width: variables.$current-weather-icon-svg-width;
+	height: variables.$current-weather-icon-svg-height;
 }
 
 .weatherCardTempInfo {
-	font-size: 60px;
+	font-size: variables.$weather-card-temp-info-font-size;
 }
 
 .moreDetails {
