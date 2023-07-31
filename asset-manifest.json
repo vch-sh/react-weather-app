@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/weather-app/static/css/main.20f2f63c.css",
-    "main.js": "/weather-app/static/js/main.43908f7d.js",
-    "static/media/snow.svg": "/weather-app/static/media/snow.3b8aa3fc3f0a3b74f3ea7b5baab20954.svg",
-    "static/media/rain.svg": "/weather-app/static/media/rain.0b02e108a35325f17783bcdcea875985.svg",
-    "static/media/cloud.svg": "/weather-app/static/media/cloud.37bec56899504381260dc600f1b6f826.svg",
-    "static/media/clear.svg": "/weather-app/static/media/clear.2b11c676d09c499dc74542e34eb8a9ad.svg",
-    "static/media/haze.svg": "/weather-app/static/media/haze.7fa04ecd346de572c83e70430435bd83.svg",
-    "static/media/thunderstorm.svg": "/weather-app/static/media/thunderstorm.d4f8707096fc78e220f86fb0c7cd1f50.svg",
-    "static/media/snow-title.svg": "/weather-app/static/media/snow-title.433fa289b6f3788f27463a1c150b6b01.svg",
-    "static/media/pressure-title.svg": "/weather-app/static/media/pressure-title.a08dee19a1605262883435e33626e029.svg",
-    "static/media/rain-title.svg": "/weather-app/static/media/rain-title.272b72b1d603a1d0d341ea4728f7d065.svg",
-    "static/media/windspeed-title.svg": "/weather-app/static/media/windspeed-title.68913e95133b8acd832827553d815230.svg",
-    "static/media/temperature-title.svg": "/weather-app/static/media/temperature-title.85f406db8620a1559a3955cdd49420d6.svg",
-    "index.html": "/weather-app/index.html",
-    "static/media/cloud-title.svg": "/weather-app/static/media/cloud-title.a16b70b0482863cf03386eed000910ad.svg",
-    "static/media/humidity-title.svg": "/weather-app/static/media/humidity-title.4b93b85791fb39d04709c6e6bbca3ba6.svg",
-    "static/media/loading.svg": "/weather-app/static/media/loading.029ac01db0011a33498b809a945f37f8.svg",
-    "main.20f2f63c.css.map": "/weather-app/static/css/main.20f2f63c.css.map",
-    "main.43908f7d.js.map": "/weather-app/static/js/main.43908f7d.js.map"
+    "main.css": "/react-weather-app/static/css/main.20f2f63c.css",
+    "main.js": "/react-weather-app/static/js/main.83094538.js",
+    "static/media/snow.svg": "/react-weather-app/static/media/snow.3b8aa3fc3f0a3b74f3ea7b5baab20954.svg",
+    "static/media/rain.svg": "/react-weather-app/static/media/rain.0b02e108a35325f17783bcdcea875985.svg",
+    "static/media/cloud.svg": "/react-weather-app/static/media/cloud.37bec56899504381260dc600f1b6f826.svg",
+    "static/media/clear.svg": "/react-weather-app/static/media/clear.2b11c676d09c499dc74542e34eb8a9ad.svg",
+    "static/media/haze.svg": "/react-weather-app/static/media/haze.7fa04ecd346de572c83e70430435bd83.svg",
+    "static/media/thunderstorm.svg": "/react-weather-app/static/media/thunderstorm.d4f8707096fc78e220f86fb0c7cd1f50.svg",
+    "static/media/snow-title.svg": "/react-weather-app/static/media/snow-title.433fa289b6f3788f27463a1c150b6b01.svg",
+    "static/media/pressure-title.svg": "/react-weather-app/static/media/pressure-title.a08dee19a1605262883435e33626e029.svg",
+    "static/media/rain-title.svg": "/react-weather-app/static/media/rain-title.272b72b1d603a1d0d341ea4728f7d065.svg",
+    "static/media/windspeed-title.svg": "/react-weather-app/static/media/windspeed-title.68913e95133b8acd832827553d815230.svg",
+    "static/media/temperature-title.svg": "/react-weather-app/static/media/temperature-title.85f406db8620a1559a3955cdd49420d6.svg",
+    "index.html": "/react-weather-app/index.html",
+    "static/media/cloud-title.svg": "/react-weather-app/static/media/cloud-title.a16b70b0482863cf03386eed000910ad.svg",
+    "static/media/humidity-title.svg": "/react-weather-app/static/media/humidity-title.4b93b85791fb39d04709c6e6bbca3ba6.svg",
+    "static/media/loading.svg": "/react-weather-app/static/media/loading.029ac01db0011a33498b809a945f37f8.svg",
+    "main.20f2f63c.css.map": "/react-weather-app/static/css/main.20f2f63c.css.map",
+    "main.83094538.js.map": "/react-weather-app/static/js/main.83094538.js.map"
   },
   "entrypoints": [
     "static/css/main.20f2f63c.css",
-    "static/js/main.43908f7d.js"
+    "static/js/main.83094538.js"
   ]
 }
