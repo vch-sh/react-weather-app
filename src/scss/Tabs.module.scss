@@ -14,7 +14,7 @@
 
 .tabsNavBtn {
 	position: relative;
-	padding: 10px 4px;
+	padding: 8px 4px;
 	background-color: variables.$tabs-nav-btn-background-color;
 	font-size: variables.$tabs-nav-btn-font-size;
 	color: variables.$tabs-nav-btn-color;
@@ -53,8 +53,8 @@
 }
 
 .tabsContentItemTitle {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-left: 17px;
+	padding-right: 17px;
 	background-color: variables.$tabs-content-item-title-background-color;
 	font-size: variables.$tabs-content-item-title-font-size;
 	font-weight: variables.$tabs-content-item-title-font-weight;
@@ -62,7 +62,7 @@
 	border: 1px solid variables.$tabs-content-item-border-color;
 
 	& span {
-		margin-left: 4px;
+		margin-left: 2px;
 	}
 }
 

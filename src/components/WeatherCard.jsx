@@ -79,7 +79,7 @@ const WeatherCard = ({
 				</div>
 			</div>
 			<span 
-				className={styles.moreDetails}
+				className={styles.moreDetailsText}
 				onClick={showDetailsHandler}
 			>
 				more details

@@ -8,7 +8,6 @@ import { ReactComponent as PressureTitle } from '../assets/icons/pressure-title.
 import { ReactComponent as HumidityTitle } from '../assets/icons/humidity-title.svg';
 import styles from '../scss/Tabs.module.scss';
 
-
 const Tabs = ({
 	hourly, 
 	tempForSpecificDay,  
