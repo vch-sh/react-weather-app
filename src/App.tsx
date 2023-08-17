@@ -1,26 +1,33 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import InputForm from './components/InputForm';
 import WeatherCard from './components/WeatherCard';
 import SearchOptions from './components/SearchOptions';
 import MoreDetails from './components/MoreDetails';
 import Container from './components/Container';
+import { 
+  ILocations, 
+  ILocationOutputData,
+  ICoordinates,
+  IHourlyHourly,
+} from './types';
 import styles from './scss/App.module.scss';
 
 function App() {
   const [text, setText] = useState('');
-	const [locations, setLocations] = useState([]);
-  const [locationOutputData, setLocationOutputData] = useState({});
+	const [locations, setLocations] = useState<ILocations[] | null>(null);
+  const [locationOutputData, setLocationOutputData] = useState<ILocationOutputData | {}>({});
 	const [error, setError] = useState('');
-  const [coordinates, setCoordinates] = useState({ latitude: '', longitude: '' });
-  const [weatherCode, setWeatherCode] = useState();
+  const [coordinates, setCoordinates] = useState<ICoordinates>({ latitude: '', longitude: '' });
+  const [weatherCode, setWeatherCode] = useState<number | null>(null);
   const [showSearchOptions, setShowSearchOptions] = useState(true);
   const [showWeatherCard, setShowWeatherCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [tempUnits, setTempUnits] = useState('celsius');
-  const [hourly, setHourly] = useState();
+  const [hourly, setHourly] = useState<IHourlyHourly | null>(null);
   const [showDetails, setShowDetails] = useState(false);
 
-	const inputHandler = (e) => {
+	const inputHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {
 		setText(e.target.value);
     setError('');
 	}
@@ -31,7 +38,7 @@ function App() {
     }
   }, [text]);
   
-	const searchHandler = (e) => {
+	const searchHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     
     if (text.trim().length) {
@@ -52,8 +59,10 @@ function App() {
       setText('');
       setIsLoading(false);
     } catch (error) {
-      setError(error.message);
-      setIsLoading(false);
+      if (error instanceof Error) {
+        setError(error.message);
+        setIsLoading(false);
+      }
     }
   }
 
@@ -69,13 +78,15 @@ function App() {
 			setLocations(cityNameData.results);
       setIsLoading(false);
 		} catch (error) {
-			setError(error.message);
-      setIsLoading(false);
+      if (error instanceof Error) {
+        setError(error.message);
+        setIsLoading(false);
+      }
 		}
 	}
   
-  const searchOptionsHandler = (locationId) => {
-    locations.map(location => {
+  const searchOptionsHandler = (locationId: string) => {
+    locations?.map(location => {
       if (locationId === location.id) {
         setCoordinates({
           latitude: location.latitude, 
@@ -106,13 +117,15 @@ function App() {
       const hourlyData = await fetchDetailsData.json();
       setHourly(hourlyData);
     } catch (error) {
-      setError(error.message);
+      if (error instanceof Error) {
+        setError(error.message);
+      }
     }
   }
 
-  const clickHandler = async (e) => {
+  const clickHandler: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
-    if (text.trim().length && locations.length > 0) {
+    if (text.trim().length && locations && locations.length > 0) {
       setShowSearchOptions(true);
       setLocations([]);
       fetchWeatherCode();
@@ -133,7 +146,7 @@ function App() {
           inputHandler={inputHandler}
           searchHandler={searchHandler}
           clickHandler={clickHandler}
-          showSearchOptions={showSearchOptions}
+          // showSearchOptions={showSearchOptions}
           isLoading={isLoading}
           tempUnits={tempUnits}
           setTempUnits={setTempUnits}
@@ -162,7 +175,7 @@ function App() {
         {showDetails && 
           <MoreDetails
             hourly={hourly}
-            tempUnits={tempUnits}
+            // tempUnits={tempUnits}
           />
         }
       </Container>

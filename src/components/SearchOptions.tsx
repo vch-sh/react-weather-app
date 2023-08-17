@@ -1,7 +1,10 @@
+import React from 'react';
+import { ILocations } from '../types';
 import styles from '../scss/SearchOptions.module.scss';
 
-const SearchOptions = ({ locations, searchOptionsHandler }) => {
 
+
+const SearchOptions = ({ locations, searchOptionsHandler }) => {
 	return (
 		<>
 			<div className={styles.search}>

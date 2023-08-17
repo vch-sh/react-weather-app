@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { ReactComponent as RainTitle } from '../assets/icons/rain-title.svg';
 import { ReactComponent as WindspeedTitle } from '../assets/icons/windspeed-title.svg';

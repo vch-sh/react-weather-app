@@ -1,9 +1,19 @@
+import React from 'react';
 import Tabs from '../UI/Tabs';
+import { IHourlyHourly } from '../types';
 import styles from '../scss/MoreDetails.module.scss';
 
-const MoreDetails = ({ hourly }) => {
+interface MoreDetailsProps {
+  hourly: IHourlyHourly | null; 
+}
 
-	const getDataForWeekBySpecificHour = (data) => {
+const MoreDetails = ({ hourly }: MoreDetailsProps) => {
+
+	if (!hourly) {
+		return null;
+	}
+
+	const getDataForWeekBySpecificHour = (data: number[]) => {
 		const res = [];
 		for (let i = 0; i < data.length; i += 3) {
 			res.push(data[i]);
@@ -18,13 +28,13 @@ const MoreDetails = ({ hourly }) => {
 	const detailedWindSpeedData = getDataForWeekBySpecificHour(hourly.hourly.windspeed_10m);
 	const detailedRainData = getDataForWeekBySpecificHour(hourly.hourly.rain);
 	const detailedSnowfallData = getDataForWeekBySpecificHour(hourly.hourly.snowfall);
-	
-	const getDataForSpecificDay = (dataForEntireWeekArray, startIndex, endIndex) => {
+
+	const getDataForSpecificDay = (dataForEntireWeekArray: number[], startIndex: number, endIndex: number) => {
 		return dataForEntireWeekArray.slice(startIndex, endIndex);
 	}
 
-	const formObjectDataForSpeciticDay = (detailedData) => {
-		const dataObj = {};
+	const formObjectDataForSpeciticDay = (detailedData: number[]) => {
+		const dataObj: { [key: number]: number[] } = {};
 
 		for (let i = 0; i < 7; i++) {
 			const startIndex = i * 8;

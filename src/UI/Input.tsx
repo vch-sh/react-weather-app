@@ -1,6 +1,8 @@
+import React from 'react';
+import { InputProps } from '../types';
 import styles from '../scss/Input.module.scss';
 
-const Input = ({ text, inputHandler }) => {
+const Input = ({ text, inputHandler }: InputProps) => {
 	
 	return (
 		<input 

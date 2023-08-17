@@ -1,9 +1,10 @@
-import { ReactComponent as ClearSky } from '../assets/icons/clear.svg';
-import { ReactComponent as Cloud } from '../assets/icons/cloud.svg';
-import { ReactComponent as Haze } from '../assets/icons/haze.svg';
-import { ReactComponent as Rain } from '../assets/icons/rain.svg';
-import { ReactComponent as Snow } from '../assets/icons/snow.svg';
-import { ReactComponent as Thunderstorm } from '../assets/icons/thunderstorm.svg';
+import React from 'react';
+import ClearSky from '../assets/icons/clear.svg';
+import Cloud from '../assets/icons/cloud.svg';
+import Haze from '../assets/icons/haze.svg';
+import Rain from '../assets/icons/rain.svg';
+import Snow from '../assets/icons/snow.svg';
+import Thunderstorm from '../assets/icons/thunderstorm.svg';
 import styles from '../scss/WeatherCard.module.scss';
 
 const WeatherCard = ({ 

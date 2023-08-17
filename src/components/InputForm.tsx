@@ -1,7 +1,20 @@
+import React from 'react';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
-import {ReactComponent as Loading} from '../assets/loading.svg';
+import Loading from '../assets/loading.svg';
 import styles from '../scss/InputForm.module.scss';
+
+interface InputFormProps {
+	text: string,
+	inputHandler: React.ChangeEventHandler<HTMLInputElement>,
+	searchHandler: React.FormEventHandler<HTMLFormElement>,
+	clickHandler: React.MouseEventHandler<HTMLButtonElement>,
+	isLoading: boolean,
+	tempUnits: string,
+	setTempUnits: React.Dispatch<React.SetStateAction<string>>,
+	setShowWeatherCard: React.Dispatch<React.SetStateAction<boolean>>,
+	setShowDetails: React.Dispatch<React.SetStateAction<boolean>>,
+}
 
 const InputForm = ({ 
 	text, 
@@ -13,9 +26,9 @@ const InputForm = ({
 	setTempUnits, 
 	setShowWeatherCard, 
 	setShowDetails 
-}) => {
+}: InputFormProps) => {
 	
-	const tempUnitsHandler = (tempUnits) => {
+	const tempUnitsHandler = (tempUnits: string) => {
 		setShowWeatherCard(false);
 		setShowDetails(false);
 		tempUnits === 'celsius' ? setTempUnits('fahrenheit') : setTempUnits('celsius');
