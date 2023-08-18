@@ -5,6 +5,8 @@ This is a weather app built with React that allows users to search for weather i
 
 ### While developing this weather app, I gained valuable experience and practiced various skills. Here are some of the things I learned and practiced during the development process:
 
+* **TypeScript** integration to provide strong typing and improve code reliability.
+
 * **React Components**: I practiced creating and managing different React components to build a modular and maintainable app structure. Components such as WeatherCard, InputForm, SearchOptions, and MoreDetails were created to encapsulate specific functionalities.
 
 * **State Management**: I worked with `useState` hook to manage the state of the app.

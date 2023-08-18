@@ -146,7 +146,6 @@ function App() {
           inputHandler={inputHandler}
           searchHandler={searchHandler}
           clickHandler={clickHandler}
-          // showSearchOptions={showSearchOptions}
           isLoading={isLoading}
           tempUnits={tempUnits}
           setTempUnits={setTempUnits}
@@ -175,7 +174,6 @@ function App() {
         {showDetails && 
           <MoreDetails
             hourly={hourly}
-            // tempUnits={tempUnits}
           />
         }
       </Container>
