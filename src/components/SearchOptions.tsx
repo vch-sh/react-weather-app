@@ -2,9 +2,12 @@ import React from 'react';
 import { ILocations } from '../types';
 import styles from '../scss/SearchOptions.module.scss';
 
+interface SearchOptionsProps {
+	locations: ILocations[],
+	searchOptionsHandler: (locationId: string) => void,
+}
 
-
-const SearchOptions = ({ locations, searchOptionsHandler }) => {
+const SearchOptions = ({ locations, searchOptionsHandler }: SearchOptionsProps) => {
 	return (
 		<>
 			<div className={styles.search}>

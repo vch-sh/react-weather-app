@@ -1,10 +1,10 @@
 import React from 'react';
 import Tabs from '../UI/Tabs';
-import { IHourlyHourly } from '../types';
+import { IHourly } from '../types';
 import styles from '../scss/MoreDetails.module.scss';
 
 interface MoreDetailsProps {
-  hourly: IHourlyHourly | null; 
+  hourly: IHourly | null; 
 }
 
 const MoreDetails = ({ hourly }: MoreDetailsProps) => {

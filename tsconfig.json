@@ -13,6 +13,6 @@
     "jsx": "react",
     "moduleResolution": "node"
   },
-  "include": ["src"],
+  "include": ["src", "src/types/declarations.d.ts"],
   "exclude": ["node_modules"],
 }

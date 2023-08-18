@@ -1,6 +1,10 @@
 import React from 'react';
-import { ButtonProps } from '../types';
 import styles from '../scss/Button.module.scss';
+
+interface ButtonProps {
+	children: React.ReactNode,
+	clickHandler: React.MouseEventHandler<HTMLButtonElement>,
+}
 
 const Button = ({ children, clickHandler }: ButtonProps) => {
 	return (

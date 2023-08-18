@@ -11,7 +11,8 @@ export interface ILocations {
 export interface ILocationOutputData {
   name: string,
   country: string,
-  code: string
+  countryCode: string,
+	region: string,
 }
 
 export interface ICoordinates {
@@ -21,12 +22,6 @@ export interface ICoordinates {
 
 export interface IHourly {
 	hourly: {
-		[key: string]: number[]
-	}
-}
-
-export interface IHourlyHourly {
-	hourly: {
 		temperature_2m: number[],
 		relativehumidity_2m: number[],
 		pressure_msl: number[],
@@ -34,15 +29,14 @@ export interface IHourlyHourly {
 		windspeed_10m: number[],
 		rain: number[],
 		snowfall: number[],
+	},
+	hourly_units: {
+		temperature_2m: string,
+		relativehumidity_2m: string,
+		pressure_msl: string,
+		cloudcover: string,
+		windspeed_10m: string,
+		rain: string,
+		snowfall: string,
 	}
-}
-
-export interface ButtonProps {
-	children: React.ReactNode,
-	clickHandler: React.MouseEventHandler<HTMLButtonElement>,
-}
-
-export interface InputProps {
-	text: string,
-	inputHandler: React.ChangeEventHandler<HTMLInputElement>,
 }

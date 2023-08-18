@@ -1,13 +1,25 @@
 import React from 'react';
 import { useState } from 'react';
-import { ReactComponent as RainTitle } from '../assets/icons/rain-title.svg';
 import { ReactComponent as WindspeedTitle } from '../assets/icons/windspeed-title.svg';
+import { ReactComponent as RainTitle } from '../assets/icons/rain-title.svg';
 import { ReactComponent as TemperatureTitle } from '../assets/icons/temperature-title.svg';
 import { ReactComponent as CloudTitle } from '../assets/icons/cloud-title.svg';
 import { ReactComponent as SnowTitle } from '../assets/icons/snow-title.svg';
 import { ReactComponent as PressureTitle } from '../assets/icons/pressure-title.svg';
 import { ReactComponent as HumidityTitle } from '../assets/icons/humidity-title.svg';
+import { IHourly } from '../types';
 import styles from '../scss/Tabs.module.scss';
+
+interface TabsProps {
+	hourly: IHourly,
+	tempForSpecificDay: { [key: number]: number[] },
+	humidityForSpecificDay: { [key: number]: number[] },
+	pressureForSpecificDay: { [key: number]: number[] },
+	cloudcoverForSpecificDay: { [key: number]: number[] },
+	windspeedForSpecificDay: { [key: number]: number[] },
+	rainForSpecificDay: { [key: number]: number[] },
+	snowfallForSpecificDay: { [key: number]: number[] },
+}
 
 const Tabs = ({
 	hourly, 
@@ -18,23 +30,23 @@ const Tabs = ({
 	windspeedForSpecificDay,
 	rainForSpecificDay,
 	snowfallForSpecificDay
-}) => {
+}: TabsProps) => {
 
 	const [toggleState, setToggleState] = useState(1);
-	const [hourlyUnits, setHourlyUnits] = useState(hourly);
+	const [hourlyUnits, _] = useState(hourly);
 
-	const toggleTab = (index) => {
+	const toggleTab = (index: number) => {
 		setToggleState(index);
 	}
 
-	const getNextWeekDates = () => {
+	const getNextWeekDates = (initialToggleState: number) => {
 		const date = new Date();
 		const daysOfWeekShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 		const currentDate = {
 			day: date.getDate(),
 			month: date.toLocaleString('en', { month: 'long' }),
 			dayOfWeek: daysOfWeekShort[date.getDay()],
-			toggleState: toggleState - 1
+			toggleState: initialToggleState
 		}
 
 		const nextWeekDates = [currentDate];
@@ -48,14 +60,15 @@ const Tabs = ({
 			const nextDay = {
 				day: nextDayDate.getDate(),
 				month: nextDayDate.toLocaleString('en', { month: 'long' }),
-				dayOfWeek: daysOfWeekShort[nextDayDate.getDay()]
+				dayOfWeek: daysOfWeekShort[nextDayDate.getDay()],
+				toggleState: initialToggleState + i
 			}
 			nextWeekDates.push(nextDay);
 		}
 		return nextWeekDates;
 	}
 
-	const nextWeekDates = getNextWeekDates();
+	const nextWeekDates = getNextWeekDates(toggleState - 1);
 
 	const getHours = () => {
 		const hours = [];
@@ -66,7 +79,7 @@ const Tabs = ({
 	}
 	const hours = getHours();
 
-	const getDataForSpecificDay = (data) => {
+	const getDataForSpecificDay = (data: {[key: number]: number[]} ) => {
 		return data[toggleState - 1];
 	}
 

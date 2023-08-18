@@ -1,18 +1,26 @@
 import React from 'react';
-import ClearSky from '../assets/icons/clear.svg';
-import Cloud from '../assets/icons/cloud.svg';
-import Haze from '../assets/icons/haze.svg';
-import Rain from '../assets/icons/rain.svg';
-import Snow from '../assets/icons/snow.svg';
-import Thunderstorm from '../assets/icons/thunderstorm.svg';
+import { ReactComponent as ClearSky } from '../assets/icons/clear.svg';
+import { ReactComponent as Cloud } from '../assets/icons/cloud.svg';
+import { ReactComponent as Haze } from '../assets/icons/haze.svg';
+import { ReactComponent as Rain } from '../assets/icons/rain.svg';
+import { ReactComponent as Snow } from '../assets/icons/snow.svg';
+import { ReactComponent as Thunderstorm } from '../assets/icons/thunderstorm.svg';
+import { IHourly, ILocationOutputData } from '../types';
 import styles from '../scss/WeatherCard.module.scss';
+
+interface WeatherCarsProps {
+	hourly: IHourly,
+	locationOutputData: ILocationOutputData | null,
+	showDetailsHandler: () => void,
+	weatherCode: number | null,
+}
 
 const WeatherCard = ({ 
 	hourly, 
 	locationOutputData, 
 	showDetailsHandler, 
 	weatherCode 
-}) => {
+}: WeatherCarsProps) => {
 
 	const date = new Date();
 	const currentDate = {
@@ -65,11 +73,13 @@ const WeatherCard = ({
 		<>
 			<div className={styles.weatherCard}>
 				<div className={styles.weatherCardTextInfo}>
+					{locationOutputData && 
+						<div>
+							{locationOutputData.name}, {locationOutputData.country} ({locationOutputData.countryCode})
+						</div>
+					}
 					<div>
-						{locationOutputData.name}, {locationOutputData.country} ({locationOutputData.countryCode})
-					</div>
-					<div>
-						{currentDate.day < 10 ? '0' + currentDate.day : currentDate.day} {currentDate.month < 10 ? '0' + currentDate.month : currentDate.month}
+						{currentDate.day < 10 ? '0' + currentDate.day : currentDate.day} {Number(currentDate.month) < 10 ? '0' + currentDate.month : currentDate.month}
 					</div>
 				</div>
 				<div className={styles.currentWeatherIcon}>

@@ -1,9 +1,12 @@
 import React from 'react';
-import { InputProps } from '../types';
 import styles from '../scss/Input.module.scss';
 
+interface InputProps {
+	text: string,
+	inputHandler: React.ChangeEventHandler<HTMLInputElement>,
+}
+
 const Input = ({ text, inputHandler }: InputProps) => {
-	
 	return (
 		<input 
 			type="text"

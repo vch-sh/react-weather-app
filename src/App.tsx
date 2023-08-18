@@ -9,14 +9,14 @@ import {
   ILocations, 
   ILocationOutputData,
   ICoordinates,
-  IHourlyHourly,
+  IHourly,
 } from './types';
 import styles from './scss/App.module.scss';
 
 function App() {
   const [text, setText] = useState('');
 	const [locations, setLocations] = useState<ILocations[] | null>(null);
-  const [locationOutputData, setLocationOutputData] = useState<ILocationOutputData | {}>({});
+  const [locationOutputData, setLocationOutputData] = useState<ILocationOutputData | null>(null);
 	const [error, setError] = useState('');
   const [coordinates, setCoordinates] = useState<ICoordinates>({ latitude: '', longitude: '' });
   const [weatherCode, setWeatherCode] = useState<number | null>(null);
@@ -24,7 +24,7 @@ function App() {
   const [showWeatherCard, setShowWeatherCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [tempUnits, setTempUnits] = useState('celsius');
-  const [hourly, setHourly] = useState<IHourlyHourly | null>(null);
+  const [hourly, setHourly] = useState<IHourly | null>(null);
   const [showDetails, setShowDetails] = useState(false);
 
 	const inputHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {

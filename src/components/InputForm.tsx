@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
-import Loading from '../assets/loading.svg';
+import { ReactComponent as Loading} from '../assets/loading.svg';
 import styles from '../scss/InputForm.module.scss';
 
 interface InputFormProps {
