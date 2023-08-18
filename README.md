@@ -1,4 +1,4 @@
-## [Weather App](https://vch-sh.github.io/weather-app/) 
+## [Weather App (React + TypeScript)](https://vch-sh.github.io/weather-app/) 
 **Ctrl/Command** + click to open a link in a new window
 
 This is a weather app built with React that allows users to search for weather information of different locations. Users can input the name of a city, and the app will display a list of matching locations. The user can then select a location from the list to view detailed weather information for that location, including current weather conditions and a forecast for the next few days.
