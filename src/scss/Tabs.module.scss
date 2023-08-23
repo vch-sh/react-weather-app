@@ -27,7 +27,7 @@
 
 .tabsNavBtnActive {
 	@extend .tabsNavBtn;
-	font-size: 17px;
+	// font-size: 17px;
 	font-weight: variables.$tabs-nav-btn-active-font-weight;
 	background-color: variables.$tabs-nav-btn-active-background-color;
 }
