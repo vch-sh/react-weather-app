@@ -4,12 +4,13 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center;
 }
 
 .tabsNavBtn {
 	position: relative;
-	padding: 4px;
+	padding: 2px;
+	margin: 2px;
 	background-color: variables.$tabs-nav-btn-background-color;
 	font-size: variables.$tabs-nav-btn-font-size;
 	color: variables.$tabs-nav-btn-color;
@@ -27,7 +28,6 @@
 
 .tabsNavBtnActive {
 	@extend .tabsNavBtn;
-	// font-size: 17px;
 	font-weight: variables.$tabs-nav-btn-active-font-weight;
 	background-color: variables.$tabs-nav-btn-active-background-color;
 }
@@ -49,8 +49,8 @@
 }
 
 .tabsContentItemTitle {
-	padding-left: 17px;
-	padding-right: 17px;
+	padding-left: 18px;
+	padding-right: 18px;
 	background-color: variables.$tabs-content-item-title-background-color;
 	font-size: variables.$tabs-content-item-title-font-size;
 	font-weight: variables.$tabs-content-item-title-font-weight;
@@ -58,7 +58,7 @@
 	border: 1px solid variables.$tabs-content-item-border-color;
 
 	& span {
-		margin-left: 1px;
+		margin-left: 2px;
 	}
 }
 
