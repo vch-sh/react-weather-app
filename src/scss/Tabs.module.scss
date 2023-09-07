@@ -9,8 +9,7 @@
 
 .tabsNavBtn {
 	position: relative;
-	padding: 2px;
-	margin: 2px;
+	padding: 3px;
 	background-color: variables.$tabs-nav-btn-background-color;
 	font-size: variables.$tabs-nav-btn-font-size;
 	color: variables.$tabs-nav-btn-color;
@@ -19,7 +18,7 @@
 	transition: .3s;
 	outline: none;
 	cursor: pointer;
-	letter-spacing: -1px;
+	letter-spacing: -0.8px;
 
 	&:hover {
 		background-color: variables.$tabs-nav-btn-active-background-color;
